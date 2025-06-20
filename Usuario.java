@@ -30,7 +30,19 @@ public class Usuario {
            calculadora.fazerEmprestimo(this, exemplar);
         }
     }
-
+    
+    public void devolverLivro(int codigolivro){
+        for (Emprestimo emprestimo : emprestimosatuais){
+            if(emprestimo.getExemplar().getLivro().getCodigo() == codigolivro){
+                emprestimosatuais.remove(emprestimo);
+                emprestimospassados.add(emprestimo);
+                System.out.println("Livro devolvido com sucesso");
+                return;
+            }
+        }
+        System.out.println("O usuário não possui nenhuma empréstimo desse livro");
+    }
+    
     public String getNome() {
         return nome;
     }
