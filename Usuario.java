@@ -23,14 +23,6 @@ public class Usuario {
         devedor = false;
     }
 
-    public void alugarLivro(int codigolivro){
-        Livro livro = repositorio.buscarLivro(codigolivro);  //busca no respositorio
-        Exemplar exemplar = livro.checarExemplares(); //checa o livro possui exemplares diponíveis
-        if (exemplar != null && devedor == false){ //verifica se tem exemplares disponíveis e o usuário não é devedor, o que é padrão para todo tipo de usuário
-           calculadora.fazerEmprestimo(this, exemplar);
-        }
-    }
-
     public String getNome() {
         return nome;
     }
@@ -77,6 +69,20 @@ public class Usuario {
 
     public void setRepositorio(Repositorio repositorio) {
         this.repositorio = repositorio;
+    }
+
+    public void alugarLivro(int codigolivro){
+        Livro livro = repositorio.buscarLivro(codigolivro);  //busca no respositorio
+        Exemplar exemplar = livro.checarExemplares(); //checa o livro possui exemplares diponíveis
+        if (exemplar != null && devedor == false){ //verifica se tem exemplares disponíveis e o usuário não é devedor, o que é padrão para todo tipo de usuário
+           calculadora.fazerEmprestimo(this, exemplar);
+        }
+    }
+
+    public void fazerReserva(int codigolivro){ //Só cria a reseva e adiciona na lista de reservas do livro (A data da reserva é atribuída no construtor de reserva)
+        Livro livro = repositorio.buscarLivro(codigolivro);  //busca no respositorio
+        Reserva reserva = new Reserva(this, livro);
+        livro.adicionarReserva(reserva);
     }
 
     //provavelmente adicionaremos funções de adiconar empréstimo e etc...

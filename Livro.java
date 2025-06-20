@@ -13,7 +13,6 @@ public class Livro{
     public int getCodigo() {
         return codigo;
     }
-    
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -68,5 +67,10 @@ public class Livro{
             }
         }
         return null;
+    }
+
+    //Adiciona a reserva à lista de reservas
+    public void adicionarReserva(Reserva reserva){
+        reservas.add(reserva);
     }
 }
