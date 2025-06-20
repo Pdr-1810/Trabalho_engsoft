@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CalculadoraEmprestimoPosGraduacao implements ICalculadoraEmprestimo{
@@ -20,10 +21,9 @@ public class CalculadoraEmprestimoPosGraduacao implements ICalculadoraEmprestimo
                     return;
                 }
             }
-
+            LocalDate diadoemprestimo = LocalDate.now();
             if(reservas.size() < exemplares.size()){ //se tiver menos reservas do que exemplares disponíveis, o empréstimo é feito normalmente e a função termina
-
-                Emprestimo emprestimo = new Emprestimo(usuario, exemplar);
+                Emprestimo emprestimo = new Emprestimo(usuario, exemplar, diadoemprestimo, diadoemprestimo.plusDays(5)); //coloca o dia do emprestimo como o hoje e a data de retorno como hoje +5;
                 exemplar.setEmprestimoatual(emprestimo);
                 usuario.emprestimosatuais.add(emprestimo);
                 System.out.println("Emprestimo realizado com sucesso");
@@ -35,7 +35,7 @@ public class CalculadoraEmprestimoPosGraduacao implements ICalculadoraEmprestimo
                 for(Reserva reserva : reservas){ //se tiver mais reservas do que exemplares disponíveis, checamos se alguma das reservas é do usuário
 
                     if (reserva.getUsuario() == usuario){  //caso o usuário tenha alguma reserva, o empréstimo é feito normalmente e a função termina
-                        Emprestimo emprestimo = new Emprestimo(usuario, exemplar);
+                        Emprestimo emprestimo = new Emprestimo(usuario, exemplar, diadoemprestimo, diadoemprestimo.plusDays(5)); //coloca o dia do emprestimo como o hoje e a data de retorno como hoje +5;
                         exemplar.setEmprestimoatual(emprestimo);
                         usuario.emprestimosatuais.add(emprestimo);
                         System.out.println("Emprestimo realizado com sucesso");
