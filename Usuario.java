@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Usuario {
+public abstract class Usuario {
     protected String nome;
     protected int codigoidentificacao;
     protected ArrayList<Emprestimo> emprestimospassados; //tipo um histórico
@@ -23,13 +23,29 @@ public class Usuario {
         devedor = false;
     }
 
-    public void alugarLivro(int codigolivro){
-        Livro livro = repositorio.buscarLivro(codigolivro);  //busca no respositorio
-        Exemplar exemplar = livro.checarExemplares(); //checa o livro possui exemplares diponíveis
-        if (exemplar != null && devedor == false){ //verifica se tem exemplares disponíveis e o usuário não é devedor, o que é padrão para todo tipo de usuário
-           calculadora.fazerEmprestimo(this, exemplar);
+    private void realizarEmprestimo(Exemplar exemplar) {
+    int diasEmprestimo = obterDiasEmprestimo(); 
+    Emprestimo emprestimo = new Emprestimo(this, exemplar, LocalDate.now(), LocalDate.now().plusDays(diasEmprestimo));
+    exemplar.setEmprestimoatual(emprestimo);
+    emprestimosatuais.add(emprestimo);
+   }
+
+    public void alugarLivro(int codigolivro) {
+    Livro livro = repositorio.buscarLivro(codigolivro);
+    Exemplar exemplar = livro.checarExemplares();
+    if (exemplar != null && !devedor) { 
+        if (calculadora.podeEmprestar(this, exemplar)) {
+            realizarEmprestimo(exemplar);
+            System.out.println("Empréstimo realizado com sucesso");
+        } else {
+            System.out.println(calculadora.getMotivoFalha());
         }
-    }
+     } else {
+        System.out.println("Não foi possível realizar o empréstimo: exemplar indisponível ou usuário devedor.");
+     }
+   }
+
+    
 
     public String getNome() {
         return nome;
@@ -78,6 +94,9 @@ public class Usuario {
     public void setRepositorio(Repositorio repositorio) {
         this.repositorio = repositorio;
     }
+
+    // Função abstrata que deve ser implementada por cada tipo de usuário:
+     protected abstract int obterDiasEmprestimo(); // Não sei se precisar ser protected, mas é uma função que deve ser implementada por cada tipo de usuário (Aluno, Professor, etc) para definir quantos dias o empréstimo pode durar.
 
     //provavelmente adicionaremos funções de adiconar empréstimo e etc...
 }

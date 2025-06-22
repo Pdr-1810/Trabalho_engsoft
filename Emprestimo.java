@@ -40,6 +40,12 @@ public class Emprestimo {
     public void setDataderetorno(LocalDate dataderetorno) {
         this.dataderetorno = dataderetorno;
     }
+
+
+    // Funções mais espcíficas:
+    public Livro getLivro() { // retorna o livro do exemplar
+       return this.exemplar.getLivro();
+    }
     
     
 }

@@ -10,5 +10,9 @@ public class AlunoPosGraduacao extends Usuario {
         reservas = new ArrayList<Reserva>();
         devedor = false;
     }
+    @Override
+    protected int obterDiasEmprestimo(){
+        return 3;
+    }
     
 }

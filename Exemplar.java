@@ -24,5 +24,12 @@ public class Exemplar {
         this.emprestimospassados = emprestimospassados;
     }
 
+    public List<Reserva> obterReservasLivro() {
+    return this.livro.getReservas(); // Retorna a lista de reservas do livro associado a este exemplar
+    }
+    public List<Exemplar> obterExemplaresLivro() {
+        return this.livro.getExemplares(); // Retorna a lista de exemplares do livro associado a este exemplar
+    }
+
     //não entendi direito o modelo conceitual, talvez tenha uma lista de emprestimos passados e uma referencia pro emprestimo atual
 }
