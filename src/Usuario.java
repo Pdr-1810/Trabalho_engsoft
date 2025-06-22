@@ -33,9 +33,11 @@ public abstract class Usuario {
     public void alugarLivro(int codigolivro) {
         Livro livro = repositorio.buscarLivro(codigolivro);
         Exemplar exemplar = livro.checarExemplares();
+        this.verificaDevedor(); //verifica se não está devendo nenhum livro para poder realizar novo empréstimo
         if (exemplar != null && !devedor) {
             if (calculadora.podeEmprestar(this, exemplar)) {
                 realizarEmprestimo(exemplar);
+                livro.removerReserva(this);  //função criada para no caso de o empréstimo ser decorrente de uma reserva, a reserva ser removida do array reservas do livro;
                 System.out.println("Empréstimo realizado com sucesso");
             } else {
                 System.out.println(calculadora.getmotivoFalhaEmprestimo());
@@ -66,6 +68,7 @@ public abstract class Usuario {
                     emprestimo.setDataderetorno(LocalDate.now());
                     emprestimosatuais.remove(emprestimo);
                     emprestimospassados.add(emprestimo);
+                    this.verificaDevedor(); //verifica se ao devolver o livro, ainda resta algum empréstimo pendente ou não
                     System.out.println("Devolução realizada com sucesso");
                     return;
                 }
@@ -79,7 +82,17 @@ public abstract class Usuario {
         }
    }
 
-    
+   public void verificaDevedor(){
+        if(!emprestimosatuais.isEmpty()) {
+            for (Emprestimo emprestimo : emprestimosatuais) {
+                if (emprestimo.getDataderetorno().isBefore(LocalDate.now())) {
+                    this.setDevedor(true);
+                    return;
+                }
+            }
+        }
+        this.setDevedor(false);
+   }
 
     public String getNome() {
         return nome;
@@ -127,6 +140,14 @@ public abstract class Usuario {
 
     public void setRepositorio(Repositorio repositorio) {
         this.repositorio = repositorio;
+    }
+
+    public boolean getDevedor() {
+        return devedor;
+    }
+
+    public void setDevedor(boolean valor) {
+        this.devedor = valor;
     }
 
     // Função abstrata que deve ser implementada por cada tipo de usuário:

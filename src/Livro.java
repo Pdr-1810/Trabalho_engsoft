@@ -82,4 +82,13 @@ public class Livro{
     public void adicionarReserva(Reserva reserva){
         reservas.add(reserva);
     }
+
+    public void removerReserva(Usuario usuario){
+        for (Reserva reserva: reservas){
+            if(reserva.getUsuario() == usuario){
+                reservas.remove(reserva);
+                return;
+            }
+        }
+    }
 }
