@@ -69,4 +69,13 @@ public class Livro{
         }
         return null;
     }
+    public int checarQuantidadeExemplaresDisponiveis(){
+        int quantidade = 0;
+        for (Exemplar exemplar: exemplares){
+            if(exemplar.getEmprestimoatual() == null){
+                quantidade++;
+            }
+        }
+        return quantidade;
+    }
 }

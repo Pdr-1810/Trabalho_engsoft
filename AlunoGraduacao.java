@@ -2,16 +2,14 @@ import java.util.ArrayList;
 
 public class AlunoGraduacao extends Usuario{
 
-    public AlunoGraduacao(String nome, int codigoidentificacao, Repositorio repositorio,ICalculadoraEmprestimo calculadora) {
-        super(nome, codigoidentificacao, repositorio, calculadora);
+    public AlunoGraduacao(String nome, int codigoidentificacao, Repositorio repositorio) {
+        super(nome, codigoidentificacao, repositorio);
         
-        emprestimospassados = new ArrayList<Emprestimo>();
-        emprestimosatuais = new ArrayList<Emprestimo>();
-        reservas = new ArrayList<Reserva>();
+        
+        calculadora = new CalculadoraEmprestimoAlunoGraduacao();
         devedor = false;
     }
  
-    @Override
     protected int obterDiasEmprestimo(){
         return 4;
     }

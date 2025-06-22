@@ -15,7 +15,6 @@ public class CalculadoraEmprestimoGraduacao implements ICalculadoraEmprestimo{
         if(usuario.emprestimosatuais.size() < 2){  //verifica se o aluno de graducaao ja não está no limite de livro emprestados
 
             ArrayList<Reserva> reservas = exemplar.obterReservasLivro();  //pega a lista de reservas do livro
-            ArrayList<Exemplar> exemplares = exemplar.obterExemplaresLivro();  //pega a lista de exemplares do livro
 
             for(Emprestimo emprestimo: usuario.getEmprestimosatuais()){ //percorre a lista de emprestimos atuais do usuario, se ja tiver um emprestimo do exemplar a função termina
                 if(emprestimo.getLivro() == exemplar.getLivro()){
@@ -24,7 +23,7 @@ public class CalculadoraEmprestimoGraduacao implements ICalculadoraEmprestimo{
                 }
             }
 
-            if(reservas.size() < exemplares.size()){ //se tiver menos reservas do que exemplares disponíveis, o empréstimo é feito normalmente e a função termina
+            if(reservas.size() < exemplar.getExemplaresDisponiveis()){ //se tiver menos reservas do que exemplares disponíveis, o empréstimo é feito normalmente e a função termina
                motivoFalha = "";
                return true;
             }

@@ -10,12 +10,11 @@ public abstract class Usuario {
     protected ICalculadoraEmprestimo calculadora; //aqui que vai lidar com o tempo de aluguel, prioridade e etc de cada usuário
     protected boolean devedor;
     
-
-    public Usuario(String nome, int codigoidentificacao, Repositorio repositorio, ICalculadoraEmprestimo calculadora) { //imagino que todo Usuario novo vai começar com os arrays zerados e sem ser um devedor
+    
+    public Usuario(String nome, int codigoidentificacao, Repositorio repositorio) { //imagino que todo Usuario novo vai começar com os arrays zerados e sem ser um devedor
         this.nome = nome;
         this.codigoidentificacao = codigoidentificacao;
         this.repositorio = repositorio;
-        this.calculadora = calculadora;
 
         emprestimospassados = new ArrayList<Emprestimo>();
         emprestimosatuais = new ArrayList<Emprestimo>();
