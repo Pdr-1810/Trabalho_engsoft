@@ -42,7 +42,9 @@ public class CalculadoraEmprestimoPosGraduacao implements ICalculadoraEmprestimo
         }
         else{      //se o aluno tiver mais do que 3, não é realizado o empréstimo
             motivoFalha = "Aluno já possui o máximo de empréstimos permitidos";
+            return false;
         }
+
     }
     @Override
     public String getmotivoFalhaEmprestimo() {

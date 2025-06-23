@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Livro{
+public class Livro implements IObjetoObservado{
     private int codigo;
     private String titulo;
     private String editora;
@@ -9,6 +9,20 @@ public class Livro{
     private int anodepublicacao;
     private ArrayList<Exemplar> exemplares;
     private ArrayList<Reserva> reservas;
+    private ArrayList<IObservadorLivro> observadores;
+
+    public Livro (int Codigo, String Titulo, String Editora, ArrayList<String> Autores, String Edicao, int Anodepublicacao){
+        codigo = Codigo;
+        titulo = Titulo;
+        editora = Editora;
+        autores = Autores;
+        edicao = Edicao;
+        anodepublicacao = Anodepublicacao;
+
+        exemplares = new ArrayList<Exemplar>();
+        reservas = new ArrayList<Reserva>();
+        observadores = new ArrayList<IObservadorLivro>();
+    }
 
     public int getCodigo() {
         return codigo;
@@ -81,14 +95,38 @@ public class Livro{
 
     public void adicionarReserva(Reserva reserva){
         reservas.add(reserva);
+        if (reservas.size() == 2){
+            this.notificarObservadores(+ 1); //se bater 2 reservas notifica em + 1
+        }
     }
 
-    public void removerReserva(Usuario usuario){
+    public void removerReservaPeloUsuario(Usuario usuario){ //remove reserva pelo usuário (usado na função de alugar livro no usuario)
         for (Reserva reserva: reservas){
             if(reserva.getUsuario() == usuario){
+                if (reservas.size() == 2){
+                    this.notificarObservadores(- 1);  //se ficar menos de 2 reservas notifica em -1
+                }
                 reservas.remove(reserva);
                 return;
             }
         }
     }
+
+    @Override
+    public void registrarObservador(IObservadorLivro observador){
+        observadores.add(observador);
+    }
+
+    @Override
+    public void removerObservador(IObservadorLivro observador){
+        observadores.remove(observador);
+    }
+
+    @Override
+    public void notificarObservadores(int valor){  //atualiza o valor correto de notificacoes ativas para os observadores
+        for(IObservadorLivro observador : observadores){
+            observador.atualizar(valor);
+        }
+    }
+    //não sei se a logica de incremento e decremento de observadores está correta, mas pelo menos está funcional
 }

@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class AlunoGraduacao extends Usuario{
 
-    public AlunoGraduacao(String nome, int codigoidentificacao, Repositorio repositorio) {
-        super(nome, codigoidentificacao, repositorio);
+    public AlunoGraduacao(String nome, int codigoidentificacao) {
+        super(nome, codigoidentificacao);
         
         
-        calculadora = new CalculadoraEmprestimoAlunoGraduacao();
+        calculadora = new CalculadoraEmprestimoGraduacao();
         devedor = false;
     }
  

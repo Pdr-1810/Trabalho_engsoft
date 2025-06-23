@@ -7,15 +7,13 @@ public abstract class Usuario {
     protected ArrayList<Emprestimo> emprestimospassados; //tipo um histórico
     protected ArrayList<Emprestimo> emprestimosatuais; //empréstimos ativos
     protected ArrayList<Reserva> reservas;
-    protected Repositorio repositorio;
     protected ICalculadoraEmprestimo calculadora; //aqui que vai lidar com o tempo de aluguel, prioridade e etc de cada usuário
     protected boolean devedor;
     
     
-    public Usuario(String nome, int codigoidentificacao, Repositorio repositorio) { //imagino que todo Usuario novo vai começar com os arrays zerados e sem ser um devedor
+    public Usuario(String nome, int codigoidentificacao) { //imagino que todo Usuario novo vai começar com os arrays zerados e sem ser um devedor
         this.nome = nome;
         this.codigoidentificacao = codigoidentificacao;
-        this.repositorio = repositorio;
 
         emprestimospassados = new ArrayList<Emprestimo>();
         emprestimosatuais = new ArrayList<Emprestimo>();
@@ -30,15 +28,14 @@ public abstract class Usuario {
         emprestimosatuais.add(emprestimo);
    }
 
-    public void alugarLivro(int codigolivro) {
-        Livro livro = repositorio.buscarLivro(codigolivro);
+    public void alugarLivro(Livro livro) {
         Exemplar exemplar = livro.checarExemplares();
         this.verificaDevedor(); //verifica se não está devendo nenhum livro para poder realizar novo empréstimo
         if (exemplar != null && !devedor) {
             if (calculadora.podeEmprestar(this, exemplar)) {
                 realizarEmprestimo(exemplar);
-                livro.removerReserva(this);  //função criada para no caso de o empréstimo ser decorrente de uma reserva, a reserva ser removida do array reservas do livro;
-                System.out.println("Empréstimo realizado com sucesso");
+                livro.removerReservaPeloUsuario(this);  //função criada para no caso de o empréstimo ser decorrente de uma reserva, a reserva ser removida do array reservas do livro;
+                System.out.println("Empréstimo realizado com sucesso!");
             } else {
                 System.out.println(calculadora.getmotivoFalhaEmprestimo());
             }
@@ -46,20 +43,18 @@ public abstract class Usuario {
             System.out.println("Não foi possível realizar o empréstimo: exemplar indisponível ou usuário devedor.");
          }
    }
-   public void fazerReserva(int codigolivro){
-        Livro livro = repositorio.buscarLivro(codigolivro);
+   public void fazerReserva(Livro livro){
         if (livro != null){
             Reserva reserva = new Reserva(this, livro);
             livro.adicionarReserva(reserva);
-            System.out.println("Reserva efeituada com sucesso");
+            System.out.println("Reserva efetuada com sucesso!");
         }
         else{
-            System.out.println("O livro não foi encontado no sistema");
+            System.out.println("O livro não foi encontado no sistema.");
         }
    }
 
-   public void fazerDevolucao(int codigoLivro){
-        Livro livro = repositorio.buscarLivro(codigoLivro);
+   public void fazerDevolucao(Livro livro){
         if (livro != null) {
             for (Emprestimo emprestimo : emprestimosatuais) {
                 Exemplar exemplar = emprestimo.getExemplar();
@@ -69,15 +64,15 @@ public abstract class Usuario {
                     emprestimosatuais.remove(emprestimo);
                     emprestimospassados.add(emprestimo);
                     this.verificaDevedor(); //verifica se ao devolver o livro, ainda resta algum empréstimo pendente ou não
-                    System.out.println("Devolução realizada com sucesso");
+                    System.out.println("Devolução realizada com sucesso!");
                     return;
                 }
             }
-            System.out.println("O usuário não possui nenhum empréstimo corrente desse livro");
+            System.out.println("O usuário não possui nenhum empréstimo corrente desse livro.");
             return;
         }
         else{
-            System.out.println("O livro não foi encontrado no sistema");
+            System.out.println("O livro não foi encontrado no sistema.");
 
         }
    }
@@ -134,14 +129,6 @@ public abstract class Usuario {
         this.reservas = reservas;
     }
 
-    public Repositorio getRepositorio() {
-        return repositorio;
-    }
-
-    public void setRepositorio(Repositorio repositorio) {
-        this.repositorio = repositorio;
-    }
-
     public boolean getDevedor() {
         return devedor;
     }
@@ -153,5 +140,4 @@ public abstract class Usuario {
     // Função abstrata que deve ser implementada por cada tipo de usuário:
      protected abstract int obterDiasEmprestimo(); // Não sei se precisar ser protected, mas é uma função que deve ser implementada por cada tipo de usuário (Aluno, Professor, etc) para definir quantos dias o empréstimo pode durar.
 
-    //provavelmente adicionaremos funções de adiconar empréstimo e etc...
 }
