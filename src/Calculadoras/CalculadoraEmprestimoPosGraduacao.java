@@ -14,7 +14,7 @@ public class CalculadoraEmprestimoPosGraduacao implements ICalculadoraEmprestimo
     @Override
     public boolean podeEmprestar(Usuario usuario, Exemplar exemplar){
 
-        if(usuario.getEmprestimosatuais.size() < 3){  //verifica se o aluno de pos-graducaao ja não está no limite de livro emprestados
+        if(usuario.getEmprestimosatuais().size() < 3){  //verifica se o aluno de pos-graducaao ja não está no limite de livro emprestados
 
             ArrayList<Reserva> reservas = exemplar.obterReservasLivro();  //pega a lista de reservas do livro
             ArrayList<Exemplar> exemplares = exemplar.obterExemplaresLivro();  //pega a lista de exemplares do livro
