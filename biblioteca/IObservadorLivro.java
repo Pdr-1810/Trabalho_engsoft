@@ -1,4 +1,4 @@
-package  src;
+package biblioteca;
 
 public interface IObservadorLivro {
 

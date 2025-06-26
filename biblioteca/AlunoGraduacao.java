@@ -1,8 +1,8 @@
-package src;
+package biblioteca;
 
-import src.Calculadoras.CalculadoraEmprestimoGraduacao;
+import Calculadoras.CalculadoraEmprestimoGraduacao;
 
-public class AlunoGraduacao extends Usuario{
+public class AlunoGraduacao extends Usuario {
 
     public AlunoGraduacao(String nome, int codigoidentificacao) {
         super(nome, codigoidentificacao);

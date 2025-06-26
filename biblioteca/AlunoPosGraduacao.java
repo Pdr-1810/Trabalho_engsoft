@@ -1,5 +1,6 @@
-package src;
-import src.Calculadoras.CalculadoraEmprestimoPosGraduacao;
+package biblioteca;
+
+import Calculadoras.CalculadoraEmprestimoPosGraduacao;
 
 public class AlunoPosGraduacao extends Usuario {
 

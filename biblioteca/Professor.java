@@ -1,7 +1,9 @@
-package src;
-import src.Calculadoras.CalculadoraEmprestimoProfessor;
+package biblioteca;
 
-public class Professor extends Usuario implements IObservadorLivro{
+import Calculadoras.CalculadoraEmprestimoProfessor;
+
+
+public class Professor extends Usuario implements IObservadorLivro {
     private int notificacoes;
 
     

@@ -1,4 +1,5 @@
-package src;
+package biblioteca;
+
 public interface IObjetoObservado {
 
     public void registrarObservador(IObservadorLivro observador);

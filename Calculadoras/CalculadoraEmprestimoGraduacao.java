@@ -1,10 +1,10 @@
-package src.Calculadoras;
+package Calculadoras;
 
-import src.Exemplar;
-import src.Emprestimo;
-import src.Usuario;
-import src.Reserva;
-import src.ICalculadoraEmprestimo;
+import biblioteca.Exemplar;
+import biblioteca.Emprestimo;
+import biblioteca.Usuario;
+import biblioteca.ICalculadoraEmprestimo;
+
 import java.util.ArrayList;
 
 public class CalculadoraEmprestimoGraduacao implements ICalculadoraEmprestimo {
@@ -16,7 +16,7 @@ public class CalculadoraEmprestimoGraduacao implements ICalculadoraEmprestimo {
 
         if(usuario.getEmprestimosatuais().size() < 2){  //verifica se o aluno de graducaao ja não está no limite de livro emprestados
 
-            ArrayList<Reserva> reservas = exemplar.obterReservasLivro();  //pega a lista de reservas do livro
+            ArrayList<biblioteca.Reserva> reservas = exemplar.obterReservasLivro();  //pega a lista de reservas do livro
 
             for(Emprestimo emprestimo: usuario.getEmprestimosatuais()){ //percorre a lista de emprestimos atuais do usuario, se ja tiver um emprestimo do exemplar a função termina
                 if(emprestimo.getLivro() == exemplar.getLivro()){
@@ -30,7 +30,7 @@ public class CalculadoraEmprestimoGraduacao implements ICalculadoraEmprestimo {
                return true;
             }
             else{
-                for(Reserva reserva : reservas){ //se tiver mais reservas do que exemplares disponíveis, checamos se alguma das reservas é do usuário
+                for(biblioteca.Reserva reserva : reservas){ //se tiver mais reservas do que exemplares disponíveis, checamos se alguma das reservas é do usuário
                     if (reserva.getUsuario() == usuario){  //caso o usuário tenha alguma reserva, o empréstimo é feito normalmente e a função termina
                          motivoFalha = "";
                          return true;

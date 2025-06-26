@@ -1,7 +1,8 @@
-package src;
+package biblioteca;
+
 import java.util.ArrayList;
 
-public class Livro implements IObjetoObservado{
+public class Livro implements IObjetoObservado {
     private int codigo;
     private String titulo;
     private String editora;

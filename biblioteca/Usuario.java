@@ -1,4 +1,4 @@
-package src;
+package biblioteca;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -13,7 +13,7 @@ public abstract class Usuario {
     protected boolean devedor;
     
     
-    public Usuario(String nome, int codigoidentificacao) { //imagino que todo Usuario novo vai começar com os arrays zerados e sem ser um devedor
+    public Usuario(String nome, int codigoidentificacao) { //imagino que todo biblioteca.Usuario novo vai começar com os arrays zerados e sem ser um devedor
         this.nome = nome;
         this.codigoidentificacao = codigoidentificacao;
 
@@ -49,7 +49,7 @@ public abstract class Usuario {
         if (livro != null){
             Reserva reserva = new Reserva(this, livro);
             livro.adicionarReserva(reserva);
-            System.out.println("Reserva efetuada com sucesso!");
+            System.out.println("biblioteca.Reserva efetuada com sucesso!");
         }
         else{
             System.out.println("O livro não foi encontado no sistema.");
@@ -140,6 +140,6 @@ public abstract class Usuario {
     }
 
     // Função abstrata que deve ser implementada por cada tipo de usuário:
-     protected abstract int obterDiasEmprestimo(); // Não sei se precisar ser protected, mas é uma função que deve ser implementada por cada tipo de usuário (Aluno, Professor, etc) para definir quantos dias o empréstimo pode durar.
+     protected abstract int obterDiasEmprestimo(); // Não sei se precisar ser protected, mas é uma função que deve ser implementada por cada tipo de usuário (Aluno, biblioteca.Professor, etc) para definir quantos dias o empréstimo pode durar.
 
 }

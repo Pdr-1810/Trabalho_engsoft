@@ -1,10 +1,7 @@
-package src.Calculadoras;
+package Calculadoras;
 
-import src.Exemplar;
-import src.Emprestimo;
-import src.Usuario;
-import src.Reserva;
-import src.ICalculadoraEmprestimo;
+import biblioteca.*;
+
 import java.util.ArrayList;
 
 
@@ -12,12 +9,12 @@ public class CalculadoraEmprestimoPosGraduacao implements ICalculadoraEmprestimo
 
     private String motivoFalha = "";
     @Override
-    public boolean podeEmprestar(Usuario usuario, Exemplar exemplar){
+    public boolean podeEmprestar(biblioteca.Usuario usuario, Exemplar exemplar){
 
         if(usuario.getEmprestimosatuais().size() < 3){  //verifica se o aluno de pos-graducaao ja não está no limite de livro emprestados
 
-            ArrayList<Reserva> reservas = exemplar.obterReservasLivro();  //pega a lista de reservas do livro
-            ArrayList<Exemplar> exemplares = exemplar.obterExemplaresLivro();  //pega a lista de exemplares do livro
+            ArrayList<biblioteca.Reserva> reservas = exemplar.obterReservasLivro();  //pega a lista de reservas do livro
+            ArrayList<biblioteca.Exemplar> exemplares = exemplar.obterExemplaresLivro();  //pega a lista de exemplares do livro
 
             for(Emprestimo emprestimo: usuario.getEmprestimosatuais()){ //percorre a lista de emprestimos atuais do usuario, se ja tiver um emprestimo do exemplar a função termina
 
