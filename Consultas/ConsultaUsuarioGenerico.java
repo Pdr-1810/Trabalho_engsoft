@@ -8,9 +8,9 @@ import biblioteca.Reserva;
 
 import java.time.format.DateTimeFormatter;
 
-public class ConsultaUsuarioGenerico implements IConsulta<Usuario> {
+public class ConsultaUsuarioGenerico{
     @Override
-    public void consulta(biblioteca.Usuario usuario){
+    public static void consulta(biblioteca.Usuario usuario){
         System.out.println("Nome: " + usuario.getNome());
         System.out.println("Emprestimos:");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

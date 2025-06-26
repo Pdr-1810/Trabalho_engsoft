@@ -2,7 +2,7 @@ package biblioteca;
 
 public interface IObservadorLivro {
 
-    public void atualizar(int valor);
+    public void atualizar();
 
     public int obterNotificacoes(); //como novos tipos de usuarios podem ser cadastrados como observadores, achei válido colocar isso aqui
 

@@ -14,13 +14,17 @@ public class Professor extends Usuario implements IObservadorLivro {
         devedor = false;
         notificacoes = 0;
     }
+    
     protected int obterDiasEmprestimo(){
         return 8;
     }
+    protected int obterMaxEmprestimos(){
+        return Integer.MAX_VALUE;
+    }
 
     @Override
-    public void atualizar(int valor){
-        notificacoes += valor;
+    public void atualizar(){
+        notificacoes += 1;
     }
 
     @Override

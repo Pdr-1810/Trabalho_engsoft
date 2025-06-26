@@ -98,16 +98,13 @@ public class Livro implements IObjetoObservado {
     public void adicionarReserva(Reserva reserva){
         reservas.add(reserva);
         if (reservas.size() == 2){
-            this.notificarObservadores(+ 1); //se bater 2 reservas notifica em + 1
+            this.notificarObservadores(); //se bater 2 reservas notifica em + 1
         }
     }
 
     public void removerReservaPeloUsuario(Usuario usuario){ //remove reserva pelo usuário (usado na função de alugar livro no usuario)
         for (Reserva reserva: reservas){
             if(reserva.getUsuario() == usuario){
-                if (reservas.size() == 2){
-                    this.notificarObservadores(- 1);  //se ficar menos de 2 reservas notifica em -1
-                }
                 reservas.remove(reserva);
                 return;
             }
@@ -125,9 +122,9 @@ public class Livro implements IObjetoObservado {
     }
 
     @Override
-    public void notificarObservadores(int valor){  //atualiza o valor correto de notificacoes ativas para os observadores
+    public void notificarObservadores(){  //atualiza o valor correto de notificacoes ativas para os observadores
         for(IObservadorLivro observador : observadores){
-            observador.atualizar(valor);
+            observador.atualizar();
         }
     }
     //não sei se a logica de incremento e decremento de observadores está correta, mas pelo menos está funcional

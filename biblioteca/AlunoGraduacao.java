@@ -15,4 +15,8 @@ public class AlunoGraduacao extends Usuario {
     protected int obterDiasEmprestimo(){
         return 4;
     }
+
+    protected int obterMaxEmprestimos(){
+        return 2;
+    }
 }

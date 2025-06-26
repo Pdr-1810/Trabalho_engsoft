@@ -8,8 +8,9 @@ import biblioteca.Livro;
 
 import java.time.format.DateTimeFormatter;
 
-public class ConsultaLivro implements IConsulta<biblioteca.Livro> {
-    public  void consulta(Livro livro){
+public class ConsultaLivro{
+
+    public static void consulta(Livro livro){
        if(livro == null){
               System.out.println("biblioteca.Livro não encontrado.");
               return;

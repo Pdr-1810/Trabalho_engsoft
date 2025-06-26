@@ -140,6 +140,7 @@ public abstract class Usuario {
     }
 
     // Função abstrata que deve ser implementada por cada tipo de usuário:
-     protected abstract int obterDiasEmprestimo(); // Não sei se precisar ser protected, mas é uma função que deve ser implementada por cada tipo de usuário (Aluno, biblioteca.Professor, etc) para definir quantos dias o empréstimo pode durar.
+    protected abstract int obterDiasEmprestimo(); // Não sei se precisar ser protected, mas é uma função que deve ser implementada por cada tipo de usuário (Aluno, biblioteca.Professor, etc) para definir quantos dias o empréstimo pode durar.
 
+    protected abstract int obterMaxEmprestimos();
 }
