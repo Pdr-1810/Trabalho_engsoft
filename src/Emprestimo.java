@@ -1,3 +1,5 @@
+package src;
+
 import java.time.LocalDate;
 
 public class Emprestimo {
@@ -46,6 +48,11 @@ public class Emprestimo {
     public Livro getLivro() { // retorna o livro do exemplar
        return this.exemplar.getLivro();
     }
-    
+    public String getTituloDoLivro() { // retorna o título do livro do exemplar
+     return  exemplar.getTituloDoLivro();
+    }
+    public String getNomeDoUsuario() { // retorna o nome do usuário que fez o empréstimo
+        return usuario.getNome();
+    }
     
 }

@@ -1,3 +1,4 @@
+package src;
 public interface IObjetoObservado {
 
     public void registrarObservador(IObservadorLivro observador);

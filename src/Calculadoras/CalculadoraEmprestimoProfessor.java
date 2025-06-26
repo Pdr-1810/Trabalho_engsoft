@@ -1,6 +1,13 @@
-import java.time.LocalDate;
+package src.Calculadoras;
 
-public class CalculadoraEmprestimoProfessor implements ICalculadoraEmprestimo{
+import src.Exemplar;
+import src.Emprestimo;
+import src.Usuario;
+import src.Reserva;
+import src.ICalculadoraEmprestimo;
+import java.util.ArrayList;
+
+public class CalculadoraEmprestimoProfessor implements ICalculadoraEmprestimo {
     private String motivoFalha = "";
 
     //professor não tem restrição quanto a reserva, então deve ser mais simples mesmo

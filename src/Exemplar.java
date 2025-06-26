@@ -1,3 +1,4 @@
+package src;
 import java.util.ArrayList;
 
 public class Exemplar {
@@ -36,7 +37,9 @@ public class Exemplar {
         return this.livro.checarQuantidadeExemplaresDisponiveis(); // Retorna a quantidade de exemplares disponíveis do livro associado a este exemplar
     }
 
+    public String getTituloDoLivro() {
+        return livro.getTitulo();
+    }
 
-    
     //não entendi direito o modelo conceitual, talvez tenha uma lista de emprestimos passados e uma referencia pro emprestimo atual
 }

@@ -1,3 +1,5 @@
+package  src;
+
 public interface IObservadorLivro {
 
     public void atualizar(int valor);

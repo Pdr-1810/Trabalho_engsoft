@@ -1,3 +1,5 @@
+package src;
+
 import java.time.LocalDate;
 
 public class Reserva{
@@ -22,5 +24,18 @@ public class Reserva{
     }
     public void setLivro(Livro livro) {
         this.livro = livro;
+    }
+    public LocalDate getDatadareserva() {
+        return datadareserva;
+    }
+    public void setDatadareserva(LocalDate datadareserva) {
+        this.datadareserva = datadareserva;
+    }
+
+    public String getTituloDoLivro() {
+        return livro.getTitulo();
+    }
+    public String getNomeDoUsuario() {
+        return usuario.getNome();
     }
 }

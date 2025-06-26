@@ -1,17 +1,20 @@
-import java.time.LocalDate;
+package src.Calculadoras;
+
+import src.Exemplar;
+import src.Emprestimo;
+import src.Usuario;
+import src.Reserva;
+import src.ICalculadoraEmprestimo;
 import java.util.ArrayList;
 
-public class CalculadoraEmprestimoPosGraduacao implements ICalculadoraEmprestimo{
-        
-    //isso é apenas um esboço da operação de empréstimo, estou violando todos os padrões grasp
-    //esses armengues de get's serão transformados em funções específicas posteriormente, ex: exemplar.getLivro().getReservas() = exemplar.obterReservasLivro
-    //também não estou muito certo se a lógica está 100%, nem mesmo se fiz corretamente essas calculadoras, mas pelo menos já deu uma base para aprimorar depois
+
+public class CalculadoraEmprestimoPosGraduacao implements ICalculadoraEmprestimo {
 
     private String motivoFalha = "";
     @Override
     public boolean podeEmprestar(Usuario usuario, Exemplar exemplar){
 
-        if(usuario.emprestimosatuais.size() < 3){  //verifica se o aluno de pos-graducaao ja não está no limite de livro emprestados
+        if(usuario.getEmprestimosatuais.size() < 3){  //verifica se o aluno de pos-graducaao ja não está no limite de livro emprestados
 
             ArrayList<Reserva> reservas = exemplar.obterReservasLivro();  //pega a lista de reservas do livro
             ArrayList<Exemplar> exemplares = exemplar.obterExemplaresLivro();  //pega a lista de exemplares do livro
