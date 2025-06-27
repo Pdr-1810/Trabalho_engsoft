@@ -7,7 +7,7 @@ public class Professor extends Usuario implements IObservadorLivro {
     private int notificacoes;
 
     
-    public Professor(String nome, int codigoidentificacao) {
+    public Professor(String nome, String codigoidentificacao) {
         super(nome, codigoidentificacao);
         verificador = new VerificadorEmprestimoProfessor();
         devedor = false;

@@ -3,7 +3,7 @@ package Biblioteca;
 import java.util.ArrayList;
 
 public class Livro implements IObjetoObservado {
-    private int codigo;
+    private String codigo;
     private String titulo;
     private String editora;
     private ArrayList<String> autores; //no PDF fala autores, aí fiquei na dúvida se a gente bota uma lista de strings ou não
@@ -13,7 +13,7 @@ public class Livro implements IObjetoObservado {
     private ArrayList<Reserva> reservas;
     private ArrayList<IObservadorLivro> observadores;
 
-    public Livro (int Codigo, String Titulo, String Editora, ArrayList<String> Autores, String Edicao, int Anodepublicacao){
+    public Livro (String Codigo, String Titulo, String Editora, ArrayList<String> Autores, String Edicao, int Anodepublicacao){
         codigo = Codigo;
         titulo = Titulo;
         editora = Editora;
@@ -26,11 +26,11 @@ public class Livro implements IObjetoObservado {
         observadores = new ArrayList<IObservadorLivro>();
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
     
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
     public String getTitulo() {

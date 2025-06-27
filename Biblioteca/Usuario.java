@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public abstract class Usuario {
     protected String nome;
-    protected int codigoidentificacao;
+    protected String codigoidentificacao;
     protected ArrayList<Emprestimo> emprestimospassados; //tipo um histórico
     protected ArrayList<Emprestimo> emprestimosatuais; //empréstimos ativos
     protected ArrayList<Reserva> reservas;
@@ -15,7 +15,7 @@ public abstract class Usuario {
     protected boolean devedor;
     
     
-    public Usuario(String nome, int codigoidentificacao) { //imagino que todo biblioteca.Usuario novo vai começar com os arrays zerados e sem ser um devedor
+    public Usuario(String nome, String codigoidentificacao) { //imagino que todo biblioteca.Usuario novo vai começar com os arrays zerados e sem ser um devedor
         this.nome = nome;
         this.codigoidentificacao = codigoidentificacao;
         emprestimospassados = new ArrayList<Emprestimo>();
@@ -100,11 +100,11 @@ public abstract class Usuario {
         this.nome = nome;
     }
 
-    public int getCodigoidentificacao() {
+    public String getCodigoidentificacao() {
         return codigoidentificacao;
     }
 
-    public void setCodigoidentificacao(int codigoidentificacao) {
+    public void setCodigoidentificacao(String codigoidentificacao) {
         this.codigoidentificacao = codigoidentificacao;
     }
 

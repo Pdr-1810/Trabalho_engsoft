@@ -4,7 +4,7 @@ import Verificadores.VerificadorEmprestimoAluno;
 
 public class AlunoPosGraduacao extends Usuario {
 
-    public AlunoPosGraduacao(String nome, int codigoidentificacao) {
+    public AlunoPosGraduacao(String nome, String codigoidentificacao) {
         super(nome, codigoidentificacao);
         verificador = new VerificadorEmprestimoAluno();
         devedor = false;
