@@ -35,12 +35,12 @@ public abstract class Usuario {
         Exemplar exemplar = livro.checarExemplares();
         this.verificaDevedor(); //verifica se não está devendo nenhum livro para poder realizar novo empréstimo
         if (exemplar != null && !devedor) {
-            if (calculadora.podeEmprestar(this, exemplar)) {
+            if (verificador.podeEmprestar(this, exemplar)) {
                 realizarEmprestimo(exemplar);
                 livro.removerReservaPeloUsuario(this);  //função criada para no caso de o empréstimo ser decorrente de uma reserva, a reserva ser removida do array reservas do livro;
                 System.out.println("Empréstimo realizado com sucesso!");
             } else {
-                System.out.println(calculadora.getmotivoFalhaEmprestimo());
+                System.out.println(verificador.getmotivoFalhaEmprestimo());
             }
          } else {
             System.out.println("Não foi possível realizar o empréstimo: exemplar indisponível ou usuário devedor.");
@@ -141,7 +141,7 @@ public abstract class Usuario {
     }
 
     // Função abstrata que deve ser implementada por cada tipo de usuário:
-    protected abstract int obterDiasEmprestimo(); // Não sei se precisar ser protected, mas é uma função que deve ser implementada por cada tipo de usuário (Aluno, biblioteca.Professor, etc) para definir quantos dias o empréstimo pode durar.
+    public abstract int obterDiasEmprestimo(); // Não sei se precisar ser protected, mas é uma função que deve ser implementada por cada tipo de usuário (Aluno, biblioteca.Professor, etc) para definir quantos dias o empréstimo pode durar.
 
-    protected abstract int obterMaxEmprestimos();
+    public abstract int obterMaxEmprestimos();
 }

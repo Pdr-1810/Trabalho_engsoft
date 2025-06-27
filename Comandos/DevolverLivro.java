@@ -7,7 +7,7 @@ public class DevolverLivro implements Comando{
         Repositorio repositorio = new Repositorio();
         Usuario usuario = repositorio.buscarUsuario(carregadorParametros.getParametroUm());
         Livro livro = repositorio.buscarLivro(carregadorParametros.getParametroDois());
-        usuario.devolverLivro(livro);
+        usuario.fazerDevolucao(livro);
     }
 
 }

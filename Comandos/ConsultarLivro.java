@@ -1,5 +1,6 @@
 package Comandos;
 import Biblioteca.*;
+import Consultas.*;
 
 public class ConsultarLivro implements Comando{
 

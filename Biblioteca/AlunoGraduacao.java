@@ -9,12 +9,12 @@ public class AlunoGraduacao extends Usuario {
         verificador = new VerificadorEmprestimoAluno();
         devedor = false;
     }
- 
-    protected int obterDiasEmprestimo(){
+
+    public int obterDiasEmprestimo(){
         return 4;
     }
 
-    protected int obterMaxEmprestimos(){
+    public int obterMaxEmprestimos(){
         return 2;
     }
 }
