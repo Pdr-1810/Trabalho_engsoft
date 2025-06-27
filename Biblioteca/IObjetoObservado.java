@@ -6,5 +6,5 @@ public interface IObjetoObservado {
 
     public void removerObservador(IObservadorLivro observador);
 
-    public void notificarObservadores(int n);
+    public void notificarObservadores();
 }
