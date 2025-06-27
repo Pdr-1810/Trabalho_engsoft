@@ -6,7 +6,7 @@ public class AlunoGraduacao extends Usuario {
 
     public AlunoGraduacao(String nome, int codigoidentificacao) {
         super(nome, codigoidentificacao);
-        calculadora = new VerificadorEmprestimoAluno();
+        verificador = new VerificadorEmprestimoAluno();
         devedor = false;
     }
  

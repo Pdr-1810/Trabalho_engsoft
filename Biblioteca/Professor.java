@@ -9,7 +9,7 @@ public class Professor extends Usuario implements IObservadorLivro {
     
     public Professor(String nome, int codigoidentificacao) {
         super(nome, codigoidentificacao);
-        calculadora = new VerificadorEmprestimoProfessor();
+        verificador = new VerificadorEmprestimoProfessor();
         devedor = false;
         notificacoes = 0;
     }

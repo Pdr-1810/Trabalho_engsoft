@@ -1,5 +1,7 @@
 package Biblioteca;
 
+import Verificadores.IVerificadorEmprestimo;
+
 import java.util.ArrayList;
 import java.time.LocalDate;
 
@@ -9,14 +11,13 @@ public abstract class Usuario {
     protected ArrayList<Emprestimo> emprestimospassados; //tipo um histórico
     protected ArrayList<Emprestimo> emprestimosatuais; //empréstimos ativos
     protected ArrayList<Reserva> reservas;
-    protected ICalculadoraEmprestimo calculadora; //aqui que vai lidar com o tempo de aluguel, prioridade e etc de cada usuário
+    protected IVerificadorEmprestimo verificador; //aqui que vai lidar com o tempo de aluguel, prioridade e etc de cada usuário
     protected boolean devedor;
     
     
     public Usuario(String nome, int codigoidentificacao) { //imagino que todo biblioteca.Usuario novo vai começar com os arrays zerados e sem ser um devedor
         this.nome = nome;
         this.codigoidentificacao = codigoidentificacao;
-
         emprestimospassados = new ArrayList<Emprestimo>();
         emprestimosatuais = new ArrayList<Emprestimo>();
         reservas = new ArrayList<Reserva>();
