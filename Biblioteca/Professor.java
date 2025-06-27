@@ -1,6 +1,6 @@
-package biblioteca;
+package Biblioteca;
 
-import Calculadoras.CalculadoraEmprestimoProfessor;
+import Verificadores.VerificadorEmprestimoProfessor;
 
 
 public class Professor extends Usuario implements IObservadorLivro {

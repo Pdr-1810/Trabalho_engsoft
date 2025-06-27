@@ -1,6 +1,6 @@
 package Verificadores;
 
-import biblioteca.*;
+import Biblioteca.*;
 
 public interface IVerificadorEmprestimo {
     //interface básica para mexer com as calculadoras de empréstimos

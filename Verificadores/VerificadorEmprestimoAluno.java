@@ -1,6 +1,6 @@
 package Verificadores;
 
-import biblioteca.*;
+import Biblioteca.*;
 
 import java.util.ArrayList;
 

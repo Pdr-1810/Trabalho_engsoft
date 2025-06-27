@@ -1,10 +1,9 @@
 package Consultas;
 
-import biblioteca.Emprestimo;
-import biblioteca.Reserva;
-import biblioteca.IConsulta;
-import biblioteca.Exemplar;
-import biblioteca.Livro;
+import Biblioteca.Emprestimo;
+import Biblioteca.Reserva;
+import Biblioteca.Exemplar;
+import Biblioteca.Livro;
 
 import java.time.format.DateTimeFormatter;
 
@@ -12,11 +11,11 @@ public class ConsultaLivro{
 
     public static void consulta(Livro livro){
        if(livro == null){
-              System.out.println("biblioteca.Livro não encontrado.");
+              System.out.println("Livro não encontrado.");
               return;
          } else {
               // Titulo:
-              System.out.println("biblioteca.Livro encontrado: " + livro.getTitulo());
+              System.out.println("Livro encontrado: " + livro.getTitulo());
 
               // Reservas:
                 if (livro.getReservas().isEmpty()) {
@@ -43,7 +42,7 @@ public class ConsultaLivro{
                             System.out.print(" | Data de empréstimo: " + emprestimo.getDatadeemprestimo().format(formatter));
                             System.out.println(" | Data prevista para devolução: " + emprestimo.getDataderetorno().format(formatter));
                         } else {
-                            System.out.println("| Status: biblioteca.Exemplar disponível.");
+                            System.out.println("| Status: Exemplar disponível.");
                         }
                     }
                 }

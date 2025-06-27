@@ -1,4 +1,4 @@
-package biblioteca;
+package Biblioteca;
 
 public interface IObjetoObservado {
 

@@ -1,6 +1,6 @@
-package biblioteca;
+package Biblioteca;
 
-import Calculadoras.CalculadoraEmprestimoGraduacao;
+import Verificadores.VerificadorEmprestimoAluno;
 
 public class AlunoGraduacao extends Usuario {
 

@@ -1,7 +1,7 @@
 package Verificadores;
 
-import biblioteca.Exemplar;
-import biblioteca.Usuario;
+import Biblioteca.Exemplar;
+import Biblioteca.Usuario;
 
 public class VerificadorEmprestimoProfessor implements IVerificadorEmprestimo {
     private String motivoFalha = "";
