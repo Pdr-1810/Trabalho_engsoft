@@ -50,6 +50,44 @@ public class Repositorio {
         }
         return null;
     }
+
+
+
+    // adicionar um usuário ao repositório
+    public void adicionarUsuario(Usuario usuario) {
+        if (buscarUsuario(usuario.getCodigoidentificacao()) == null) {
+            usuarios.add(usuario);
+        } else {
+            System.out.println("Usuário já existe.");
+        }
+    }
+    // adicionar um livro ao repositório
+    public void adicionarLivro(Livro livro) {
+        if (buscarLivro(livro.getCodigo()) == null) {
+            livros.add(livro);
+        } else {
+            System.out.println("Livro já existe.");
+        }
+    }
+
+    // remover um usuário do repositório
+    public void removerUsuario(String codigousuario) {
+        Usuario usuario = buscarUsuario(codigousuario);
+        if (usuario != null) {
+            usuarios.remove(usuario);
+        } else {
+            System.out.println("Usuário não encontrado.");
+        }
+    }
+    // remover um livro do repositório
+    public void removerLivro(String codigoLivro){
+        Livro livro = buscarLivro(codigoLivro);
+        if (livro != null) {
+            livros.remove(livro);
+        } else {
+            System.out.println("Livro não encontrado.");
+        }
+    }
     
 
     

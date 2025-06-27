@@ -14,12 +14,12 @@ public class Livro implements IObjetoObservado {
     private ArrayList<IObservadorLivro> observadores;
 
     public Livro (String Codigo, String Titulo, String Editora, ArrayList<String> Autores, String Edicao, int Anodepublicacao){
-        codigo = Codigo;
-        titulo = Titulo;
-        editora = Editora;
-        autores = Autores;
-        edicao = Edicao;
-        anodepublicacao = Anodepublicacao;
+        this.codigo = Codigo;
+        this.titulo = Titulo;
+        this.editora = Editora;
+        this.autores = Autores;
+        this.edicao = Edicao;
+        this.anodepublicacao = Anodepublicacao;
 
         exemplares = new ArrayList<Exemplar>();
         reservas = new ArrayList<Reserva>();
@@ -29,46 +29,52 @@ public class Livro implements IObjetoObservado {
     public String getCodigo() {
         return codigo;
     }
-    
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
     public String getTitulo() {
         return titulo;
     }
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
     public String getEditora() {
         return editora;
     }
     public void setEditora(String editora) {
         this.editora = editora;
     }
+
     public ArrayList<String> getAutores() {
         return autores;
     }
     public void setAutores(ArrayList<String> Autores) {
         this.autores =  Autores;
     }
+
     public String getEdicao() {
         return edicao;
     }
     public void setEdicao(String edicao) {
         this.edicao = edicao;
     }
+
     public int getAnodepublicacao() {
         return anodepublicacao;
     }
     public void setAnodepublicacao(int anodepublicacao) {
         this.anodepublicacao = anodepublicacao;
     }
+
     public ArrayList<Exemplar> getExemplares() {
         return exemplares;
     }
     public void setExemplares(ArrayList<Exemplar> exemplares) {
         this.exemplares = exemplares;
     }
+
     public ArrayList<Reserva> getReservas() {
         return reservas;
     }
@@ -79,7 +85,7 @@ public class Livro implements IObjetoObservado {
     //checa no arrray se algum exemplar não possui nenhum emprestimo atual, ou seja, está diponível
     public Exemplar checarExemplares(){
         for (Exemplar exemplar: exemplares){
-            if(exemplar.getEmprestimoatual() == null){
+            if(exemplar.isDisponivel()){
                 return exemplar;
             }
         }
@@ -88,7 +94,7 @@ public class Livro implements IObjetoObservado {
     public int checarQuantidadeExemplaresDisponiveis(){
         int quantidade = 0;
         for (Exemplar exemplar: exemplares){
-            if(exemplar.getEmprestimoatual() == null){
+            if(exemplar.isDisponivel()){
                 quantidade++;
             }
         }

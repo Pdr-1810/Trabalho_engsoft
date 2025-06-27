@@ -6,8 +6,8 @@ public class AlunoPosGraduacao extends Usuario {
 
     public AlunoPosGraduacao(String nome, String codigoidentificacao) {
         super(nome, codigoidentificacao);
-        verificador = new VerificadorEmprestimoAluno();
-        devedor = false;
+        this.verificador = new VerificadorEmprestimoAluno();
+        this.devedor = false;
     }
     public int obterDiasEmprestimo(){
         return 5;

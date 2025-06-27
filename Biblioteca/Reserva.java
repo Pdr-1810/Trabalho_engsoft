@@ -8,9 +8,9 @@ public class Reserva{
     private LocalDate datadareserva;
 
     public Reserva(Usuario Usuario, Livro Livro){
-        usuario = Usuario;
-        livro =  Livro;
-        datadareserva = LocalDate.now();
+        this.usuario = Usuario;
+        this.livro =  Livro;
+        this.datadareserva = LocalDate.now();
     }
     
     public Usuario getUsuario() {
@@ -19,12 +19,14 @@ public class Reserva{
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
     public Livro getLivro() {
         return livro;
     }
     public void setLivro(Livro livro) {
         this.livro = livro;
     }
+
     public LocalDate getDatadareserva() {
         return datadareserva;
     }

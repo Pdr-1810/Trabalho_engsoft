@@ -9,6 +9,10 @@ import java.time.format.DateTimeFormatter;
 
 public class ConsultaUsuarioGenerico{
     public static void consulta(Usuario usuario){
+        if(usuario == null){
+            System.out.println("Usuário não encontrado.");
+            return;
+        }
         System.out.println("Nome: " + usuario.getNome());
         System.out.println("Emprestimos:");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

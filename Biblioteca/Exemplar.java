@@ -5,10 +5,14 @@ import java.util.ArrayList;
 public class Exemplar {
     private Livro livro;
     private Emprestimo emprestimoatual;
+    private String codigoExemplar;
+    private boolean disponivel;
     
-    public Exemplar(Livro livro) {
+    public Exemplar(Livro livro, String codigoExemplar, boolean disponivel) {
         this.livro = livro;
         this.emprestimoatual = null; // Inicialmente, não há empréstimo atual
+        this.codigoExemplar = codigoExemplar;
+        this.disponivel = disponivel;
     }
 
 
@@ -18,6 +22,7 @@ public class Exemplar {
     public void setLivro(Livro livro) {
         this.livro = livro;
     }
+
     public Emprestimo getEmprestimoatual() {
         return emprestimoatual;
     }
@@ -25,8 +30,26 @@ public class Exemplar {
         this.emprestimoatual = emprestimoatual;
     }
     
+    public String getCodigoExemplar() {
+        return codigoExemplar;
+    }
+    public void setCodigoExemplar(String codigoExemplar) {
+        this.codigoExemplar = codigoExemplar;
+    }
 
+    public boolean isDisponivel() {
+        if(this.emprestimoatual == null) {
+            this.disponivel = true; // Se não há empréstimo atual, o exemplar está disponível
+            return true; // Se não há empréstimo atual, o exemplar está disponível
+        } else {
+            this.disponivel = false; // Se há um empréstimo atual, o exemplar não está disponível
+            return false; // Se há um empréstimo atual, o exemplar não está disponível
+        }
+    }
 
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
     
     public ArrayList<Reserva> obterReservasLivro() {
     return this.livro.getReservas(); // Retorna a lista de reservas do livro associado a este exemplar
