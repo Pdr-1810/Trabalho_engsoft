@@ -1,7 +1,7 @@
 package Comandos;
 import Biblioteca.*;
 
-public class DevolverLivro implements Comando{
+public class DevolverExemplar implements Comando{
 
     public void executar(CarregadorParametros carregadorParametros){
         Repositorio repositorio = Repositorio.getInstancia();

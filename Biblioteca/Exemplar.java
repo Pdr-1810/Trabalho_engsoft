@@ -37,19 +37,7 @@ public class Exemplar {
         this.codigoExemplar = codigoExemplar;
     }
 
-    public boolean isDisponivel() {
-        if(this.emprestimoatual == null) {
-            this.disponivel = true; // Se não há empréstimo atual, o exemplar está disponível
-            return true; // Se não há empréstimo atual, o exemplar está disponível
-        } else {
-            this.disponivel = false; // Se há um empréstimo atual, o exemplar não está disponível
-            return false; // Se há um empréstimo atual, o exemplar não está disponível
-        }
-    }
 
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }
     
     public ArrayList<Reserva> obterReservasLivro() {
     return this.livro.getReservas(); // Retorna a lista de reservas do livro associado a este exemplar
@@ -65,5 +53,18 @@ public class Exemplar {
         return livro.getTitulo();
     }
 
-    //não entendi direito o modelo conceitual, talvez tenha uma lista de emprestimos passados e uma referencia pro emprestimo atual
+
+
+
+    public boolean isDisponivel() {
+        return this.emprestimoatual == null;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
+
+
+
 }

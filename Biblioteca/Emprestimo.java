@@ -18,6 +18,9 @@ public class Emprestimo {
         this.dataderetorno = Dataderetorno;
     }
 
+
+
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -53,6 +56,15 @@ public class Emprestimo {
     }
     public String getNomeDoUsuario() { // retorna o nome do usuário que fez o empréstimo
         return usuario.getNome();
+    }
+
+    public boolean verificarDevolucao(Livro livro){
+        if(livro.equals(livro) && this.exemplar.getEmprestimoatual() != null) {
+            this.exemplar.setDisponivel(true); // Remove o empréstimo atual
+            this.exemplar.setEmprestimoatual(null); // Marca o exemplar como disponível
+            return true; // Devolução bem-sucedida
+        }
+        return false; // Devolução falhou, livro não corresponde ou não há empréstimo atual
     }
     
 }

@@ -32,8 +32,9 @@ public abstract class Usuario {
    }
 
     public void alugarLivro(Livro livro) {
+        this.verificaDevedor();
         Exemplar exemplar = livro.checarExemplares();
-        this.verificaDevedor(); //verifica se não está devendo nenhum livro para poder realizar novo empréstimo
+        //verifica se não está devendo nenhum livro para poder realizar novo empréstimo
         if (exemplar != null && !devedor) {
             if (verificador.podeEmprestar(this, exemplar)) {
                 realizarEmprestimo(exemplar);
@@ -60,9 +61,7 @@ public abstract class Usuario {
    public void fazerDevolucao(Livro livro){
         if (livro != null) {
             for (Emprestimo emprestimo : emprestimosatuais) {
-                Exemplar exemplar = emprestimo.getExemplar();
-                if (exemplar.getLivro() == livro) {
-                    exemplar.setEmprestimoatual(null);
+                if (emprestimo.verificarDevolucao(livro)) {
                     emprestimo.setDataderetorno(LocalDate.now());
                     emprestimosatuais.remove(emprestimo);
                     emprestimospassados.add(emprestimo);
