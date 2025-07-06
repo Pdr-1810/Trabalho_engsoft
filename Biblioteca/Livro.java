@@ -107,15 +107,11 @@ public class Livro implements IObjetoObservado {
             this.notificarObservadores(); //se bater 2 reservas notifica em + 1
         }
     }
-
-    public void removerReservaPeloUsuario(Usuario usuario){ //remove reserva pelo usuário (usado na função de alugar livro no usuario)
-        for (Reserva reserva: reservas){
-            if(reserva.getUsuario() == usuario){
-                reservas.remove(reserva);
-                return;
-            }
-        }
+    public void removerReserva(Reserva reserva){
+        reservas.remove(reserva);
     }
+
+
 
     @Override
     public void registrarObservador(IObservadorLivro observador){

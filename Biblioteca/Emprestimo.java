@@ -58,13 +58,18 @@ public class Emprestimo {
         return usuario.getNome();
     }
 
-    public boolean verificarDevolucao(Livro livro){
-        if(livro.equals(livro) && this.exemplar.getEmprestimoatual() != null) {
+
+    public boolean verificarDevolucao(Exemplar exemplar, Usuario usuario){
+        if (exemplar.equals(this.exemplar) && this.exemplar.getEmprestimoatual() != null) {
             this.exemplar.setDisponivel(true); // Remove o empréstimo atual
-            this.exemplar.setEmprestimoatual(null); // Marca o exemplar como disponível
+            this.exemplar.setEmprestimoatual(null);
+            this.setDataderetorno(LocalDate.now());
+            usuario.getEmprestimosatuais().remove(this);
+            usuario.getEmprestimospassados().add(this);
+            usuario.verificaDevedor(); //verifica se ao devolver o exemplar, ainda resta algum empréstimo pendente ou não
             return true; // Devolução bem-sucedida
         }
-        return false; // Devolução falhou, livro não corresponde ou não há empréstimo atual
+        return false; // Devolução falhou, exemplar não corresponde ou não está emprestado
     }
     
 }

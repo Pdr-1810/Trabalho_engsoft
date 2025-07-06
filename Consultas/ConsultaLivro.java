@@ -35,7 +35,7 @@ public class ConsultaLivro{
                     System.out.println("Quantidade de exemplares: " + livro.getExemplares().size());
                     for(Exemplar exemplar:livro.getExemplares()){
                         Emprestimo emprestimo = exemplar.getEmprestimoatual();
-                        if (exemplar.isDisponivel()) {
+                        if (!exemplar.isDisponivel()) {
                             System.out.print(" | Status: Emprestado");
                             System.out.print(" | Usuário: " + emprestimo.getNomeDoUsuario());
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

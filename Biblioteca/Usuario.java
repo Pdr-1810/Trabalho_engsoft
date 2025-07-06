@@ -24,60 +24,6 @@ public abstract class Usuario {
         devedor = false;
     }
 
-    private void realizarEmprestimo(Exemplar exemplar) {
-        int diasEmprestimo = obterDiasEmprestimo();
-        Emprestimo emprestimo = new Emprestimo(this, exemplar, LocalDate.now(), LocalDate.now().plusDays(diasEmprestimo));
-        exemplar.setEmprestimoatual(emprestimo);
-        emprestimosatuais.add(emprestimo);
-   }
-
-    public void alugarLivro(Livro livro) {
-        this.verificaDevedor();
-        Exemplar exemplar = livro.checarExemplares();
-        //verifica se não está devendo nenhum livro para poder realizar novo empréstimo
-        if (exemplar != null && !devedor) {
-            if (verificador.podeEmprestar(this, exemplar)) {
-                realizarEmprestimo(exemplar);
-                livro.removerReservaPeloUsuario(this);  //função criada para no caso de o empréstimo ser decorrente de uma reserva, a reserva ser removida do array reservas do livro;
-                System.out.println("Empréstimo realizado com sucesso!");
-            } else {
-                System.out.println(verificador.getmotivoFalhaEmprestimo());
-            }
-         } else {
-            System.out.println("Não foi possível realizar o empréstimo: exemplar indisponível ou usuário devedor.");
-         }
-   }
-   public void fazerReserva(Livro livro){
-        if (livro != null){
-            Reserva reserva = new Reserva(this, livro);
-            livro.adicionarReserva(reserva);
-            System.out.println("biblioteca.Reserva efetuada com sucesso!");
-        }
-        else{
-            System.out.println("O livro não foi encontado no sistema.");
-        }
-   }
-
-   public void fazerDevolucao(Livro livro){
-        if (livro != null) {
-            for (Emprestimo emprestimo : emprestimosatuais) {
-                if (emprestimo.verificarDevolucao(livro)) {
-                    emprestimo.setDataderetorno(LocalDate.now());
-                    emprestimosatuais.remove(emprestimo);
-                    emprestimospassados.add(emprestimo);
-                    this.verificaDevedor(); //verifica se ao devolver o livro, ainda resta algum empréstimo pendente ou não
-                    System.out.println("Devolução realizada com sucesso!");
-                    return;
-                }
-            }
-            System.out.println("O usuário não possui nenhum empréstimo corrente desse livro.");
-            return;
-        }
-        else{
-            System.out.println("O livro não foi encontrado no sistema.");
-
-        }
-   }
 
    public void verificaDevedor(){
         if(!emprestimosatuais.isEmpty()) {
@@ -123,6 +69,8 @@ public abstract class Usuario {
         this.emprestimosatuais = emprestimosatuais;
     }
 
+
+
     public ArrayList<Reserva> getReservas() {
         return reservas;
     }
@@ -130,6 +78,15 @@ public abstract class Usuario {
     public void setReservas(ArrayList<Reserva> reservas) {
         this.reservas = reservas;
     }
+
+    public void adicionarReserva(Reserva reserva) {
+        this.reservas.add(reserva);
+    }
+
+    public void removerReserva(Reserva reserva) {
+        this.reservas.remove(reserva);
+    }
+
 
     public boolean getDevedor() {
         return devedor;
@@ -139,8 +96,24 @@ public abstract class Usuario {
         this.devedor = valor;
     }
 
+
+
+    public boolean podeEmprestar(Exemplar exemplar) {
+        return this.verificador.podeEmprestar(this, exemplar);
+    }
+
+
+    public String getMotivoFalhaEmprestimo() {
+        return this.verificador.getmotivoFalhaEmprestimo();
+    }
+
+
+
+
+
     // Função abstrata que deve ser implementada por cada tipo de usuário:
     public abstract int obterDiasEmprestimo(); // Não sei se precisar ser protected, mas é uma função que deve ser implementada por cada tipo de usuário (Aluno, biblioteca.Professor, etc) para definir quantos dias o empréstimo pode durar.
 
     public abstract int obterMaxEmprestimos();
+
 }

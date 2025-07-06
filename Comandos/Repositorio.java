@@ -41,17 +41,6 @@ public class Repositorio {
         return null;
     }
 
-    // Metodo para buscar Observadores (não sei se isso seria correto)
-    public IObservadorLivro buscarObservador(String codigoUsuario) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getCodigoidentificacao().equals(codigoUsuario) && usuario instanceof IObservadorLivro) {
-                return (IObservadorLivro) usuario;
-            }
-        }
-        return null;
-    }
-
-
 
     // adicionar um usuário ao repositório
     public void adicionarUsuario(Usuario usuario) {

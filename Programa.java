@@ -60,6 +60,46 @@ public class Programa {
         CarregadorParametros carregadorParametrosUsuario = new CarregadorParametros("123");
         consultarUsuario.executar(carregadorParametrosUsuario);
 
+        CarregadorParametros carregadorParametrosLivro = new CarregadorParametros("100");
+        consultarLivro.executar(carregadorParametrosLivro);
+
+
+        Scanner input = new Scanner(System.in);
+
+        Map<String, Comando> comandos = new HashMap<>();
+        comandos.put("emp", new FazerEmprestimo());
+        comandos.put("dev", new DevolverLivro());
+        comandos.put("res", new FazerReserva());
+        comandos.put("obs", new RegistrarObservador());
+        comandos.put("liv", new ConsultarLivro());
+        comandos.put("usu", new ConsultarUsuario());
+        comandos.put("ntf", new ConsultarNotificacoes());
+
+        //Menu de seleção
+        while (true){
+
+            System.out.println("Insira um comando");
+            String entrada = input.nextLine();
+            String[] partes = entrada.trim().split("\\s+");
+            ArrayList<String> parametros = new ArrayList<>(Arrays.asList(partes));
+
+            Comando comando = comandos.get(parametros.get(0));
+            if (parametros.size() == 2){
+                CarregadorParametros carregador = new CarregadorParametros(parametros.get(1));
+                comando.executar(carregador);
+            }
+            else if(parametros.size() == 3){
+                CarregadorParametros carregador = new CarregadorParametros(parametros.get(1), parametros.get(2));
+                comando.executar(carregador);
+            }
+            else{
+                System.out.println("Erro: Insira um comando de tamanho válido.");
+                break;
+            }
+
         }
-    
+
+        input.close();
+
+    }
 }

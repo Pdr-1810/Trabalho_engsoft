@@ -11,7 +11,10 @@ public class VerificadorEmprestimoAluno implements IVerificadorEmprestimo {
     private String motivoFalha = "";
     @Override
     public boolean podeEmprestar(Usuario usuario, Exemplar exemplar){
-
+        if(usuario.getDevedor()){  //verifica se o aluno é devedor, se for, não pode pegar emprestado
+            motivoFalha = "Aluno devedor não pode pegar emprestado";
+            return false;
+        }
         if(usuario.getEmprestimosatuais().size() < usuario.obterMaxEmprestimos()){  //verifica se o aluno de pos-graducaao ja não está no limite de livro emprestados
 
             ArrayList<Reserva> reservas = exemplar.obterReservasLivro();  //pega a lista de reservas do livro
