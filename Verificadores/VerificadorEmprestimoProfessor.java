@@ -8,6 +8,7 @@ public class VerificadorEmprestimoProfessor implements IVerificadorEmprestimo {
 
     //professor não tem restrição quanto a reserva, então deve ser mais simples mesmo
     public boolean podeEmprestar(Usuario usuario, Exemplar exemplar){  //já chequei anteriormente que tem exemplares disponíveis, então aqui eu só crio o empréstimo e o coloco como atual do exemplar
+        usuario.verificaDevedor();
         if(usuario.getDevedor()){  //verifica se o professor é devedor, se for, não pode pegar emprestado
             motivoFalha = "Professor devedor não pode pegar emprestado";
             return false;

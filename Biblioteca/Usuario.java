@@ -25,6 +25,11 @@ public abstract class Usuario {
     }
 
 
+
+
+
+
+
    public void verificaDevedor(){
         if(!emprestimosatuais.isEmpty()) {
             for (Emprestimo emprestimo : emprestimosatuais) {
@@ -88,6 +93,8 @@ public abstract class Usuario {
     }
 
 
+
+
     public boolean getDevedor() {
         return devedor;
     }
@@ -95,6 +102,7 @@ public abstract class Usuario {
     public void setDevedor(boolean valor) {
         this.devedor = valor;
     }
+
 
 
 

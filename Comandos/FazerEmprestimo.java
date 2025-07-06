@@ -25,15 +25,13 @@ public class FazerEmprestimo implements Comando{
             livro.removerReserva(reservaParaRemover);
             usuario.removerReserva(reservaParaRemover);
         }
-        else {
-            System.out.println("Nenhuma reserva encontrada para o usuário neste livro.");
-        }
+
     }
 
     public void alugarLivro(Livro livro,Usuario usuario) {
         usuario.verificaDevedor();
         Exemplar exemplar = livro.checarExemplares();
-        if (exemplar != null && !usuario.getDevedor()) {
+        if (exemplar != null) {
             if (usuario.podeEmprestar(exemplar)) {
                 realizarEmprestimo(exemplar,usuario);
                 RemoverReserva(usuario, livro);  // Remove reserva se o empréstimo for decorrente de uma reserva

@@ -11,6 +11,7 @@ public class VerificadorEmprestimoAluno implements IVerificadorEmprestimo {
     private String motivoFalha = "";
     @Override
     public boolean podeEmprestar(Usuario usuario, Exemplar exemplar){
+        usuario.verificaDevedor();
         if(usuario.getDevedor()){  //verifica se o aluno é devedor, se for, não pode pegar emprestado
             motivoFalha = "Aluno devedor não pode pegar emprestado";
             return false;

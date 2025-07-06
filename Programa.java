@@ -3,7 +3,9 @@ import Comandos.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
 public class Programa {
     public static void main(String[] args) {
         //aqui é onde faremos as manipulações
@@ -11,12 +13,12 @@ public class Programa {
         //Adicionando usuários ao repositório
         Usuario usuarioGraduacao = new AlunoGraduacao("João da Silva", "123");
         Usuario usuarioPosGraduacao = new AlunoPosGraduacao("Maria Oliveira", "456");
-        Usuario usuarioGraducao2 = new AlunoGraduacao("Ana Paula", "789");
+        Usuario usuarioGraduacao2 = new AlunoGraduacao("Ana Paula", "789");
         Usuario usuarioProfessor = new Professor("Carlos Lucena", "100");
 
         repositorio.adicionarUsuario(usuarioGraduacao);
         repositorio.adicionarUsuario(usuarioPosGraduacao);
-        repositorio.adicionarUsuario(usuarioGraducao2);
+        repositorio.adicionarUsuario(usuarioGraduacao2);
         repositorio.adicionarUsuario(usuarioProfessor);
 
         //Adicionando livros ao repositório
@@ -51,30 +53,68 @@ public class Programa {
         Exemplar exemplar8 = new Exemplar(repositorio.buscarLivro("400"), "08", true);
         Exemplar exemplar9 = new Exemplar(repositorio.buscarLivro("400"), "09", true);
 
+
+        // Adicionando exemplares aos livros
+        livro1.adicionarExemplar(exemplar1);
+        livro1.adicionarExemplar(exemplar2);
+        livro2.adicionarExemplar(exemplar3);
+        livro3.adicionarExemplar(exemplar4);
+        livro4.adicionarExemplar(exemplar5);
+        livro5.adicionarExemplar(exemplar6);
+        livro5.adicionarExemplar(exemplar7);
+        livro6.adicionarExemplar(exemplar8);
+        livro6.adicionarExemplar(exemplar9);
+
         // Adicionar Comandos:
         Comando consultarLivro = new ConsultarLivro();
         Comando consultarUsuario = new ConsultarUsuario();
 
-        // Executando comandos
 
-        CarregadorParametros carregadorParametrosUsuario = new CarregadorParametros("123");
-        consultarUsuario.executar(carregadorParametrosUsuario);
-
-        CarregadorParametros carregadorParametrosLivro = new CarregadorParametros("100");
-        consultarLivro.executar(carregadorParametrosLivro);
 
 
         Scanner input = new Scanner(System.in);
 
         Map<String, Comando> comandos = new HashMap<>();
         comandos.put("emp", new FazerEmprestimo());
-        comandos.put("dev", new DevolverLivro());
+        comandos.put("dev", new DevolverExemplar());
         comandos.put("res", new FazerReserva());
         comandos.put("obs", new RegistrarObservador());
         comandos.put("liv", new ConsultarLivro());
         comandos.put("usu", new ConsultarUsuario());
         comandos.put("ntf", new ConsultarNotificacoes());
 
+        // 1. Usuário faz dois empréstimos, tenta um terceiro (deve falhar para graduação)
+        CarregadorParametros p1 = new CarregadorParametros("123", "100");
+        comandos.get("emp").executar(p1); // Sucesso
+        CarregadorParametros p2 = new CarregadorParametros("123", "101");
+        comandos.get("emp").executar(p2); // Sucesso
+        CarregadorParametros p3 = new CarregadorParametros("123", "200");
+        comandos.get("emp").executar(p3); // Deve falhar (limite)
+
+// 2. Reserva e empréstimo com reservas pendentes
+        CarregadorParametros p4 = new CarregadorParametros("789", "100");
+        comandos.get("res").executar(p4); // Reserva feita
+        comandos.get("emp").executar(p4); // Deve cancelar reserva e emprestar
+
+// 3. Professor pega vários livros, mesmo com reservas
+        CarregadorParametros p5 = new CarregadorParametros("100", "300");
+        comandos.get("emp").executar(p5); // Sucesso
+        CarregadorParametros p6 = new CarregadorParametros("100", "301");
+        comandos.get("emp").executar(p6); // Sucesso
+
+// 4. Devolução e novo empréstimo
+        comandos.get("dev").executar(p1); // Devolve livro 100
+        comandos.get("emp").executar(p3); // Agora deve conseguir
+
+// 5. Notificações para observador
+        CarregadorParametros p7 = new CarregadorParametros("100", "101");
+        comandos.get("obs").executar(p7); // Professor observa livro 101
+        comandos.get("res").executar(new CarregadorParametros("123", "101"));
+        comandos.get("res").executar(new CarregadorParametros("456", "101"));
+        comandos.get("res").executar(new CarregadorParametros("789", "101")); // Deve notificar
+
+// 6. Consulta de notificações
+        comandos.get("ntf").executar(new CarregadorParametros("100"));
         //Menu de seleção
         while (true){
 

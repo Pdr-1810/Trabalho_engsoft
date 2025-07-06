@@ -82,6 +82,15 @@ public class Livro implements IObjetoObservado {
         this.reservas = reservas;
     }
 
+
+
+    public void adicionarExemplar(Exemplar exemplar){
+        exemplares.add(exemplar);
+    }
+    public void removerExemplar(Exemplar exemplar){
+        exemplares.remove(exemplar);
+    }
+
     //checa no arrray se algum exemplar não possui nenhum emprestimo atual, ou seja, está diponível
     public Exemplar checarExemplares(){
         for (Exemplar exemplar: exemplares){
@@ -103,7 +112,7 @@ public class Livro implements IObjetoObservado {
 
     public void adicionarReserva(Reserva reserva){
         reservas.add(reserva);
-        if (reservas.size() == 2){
+        if (reservas.size() >= 2){
             this.notificarObservadores(); //se bater 2 reservas notifica em + 1
         }
     }

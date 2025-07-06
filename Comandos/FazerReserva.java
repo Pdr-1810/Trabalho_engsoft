@@ -21,7 +21,7 @@ public class FazerReserva implements Comando{
         Usuario usuario = repositorio.buscarUsuario(carregadorParametros.getParametroUm());
         Livro livro = repositorio.buscarLivro(carregadorParametros.getParametroDois());
 
-
+        fazerReserva(livro,usuario);
     }
 
 }
