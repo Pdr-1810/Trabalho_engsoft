@@ -29,6 +29,7 @@ public abstract class Usuario {
             if (reserva.getLivro() == livro){
                 reservas.remove(reserva);
                 livro.removerReserva(reserva);
+                return;
             }
        } 
     }
@@ -77,8 +78,6 @@ public abstract class Usuario {
         this.emprestimosatuais = emprestimosatuais;
     }
 
-
-
     public ArrayList<Reserva> getReservas() {
         return reservas;
     }
@@ -95,9 +94,6 @@ public abstract class Usuario {
         this.reservas.remove(reserva);
     }
 
-
-
-
     public boolean getDevedor() {
         return devedor;
     }
@@ -105,9 +101,6 @@ public abstract class Usuario {
     public void setDevedor(boolean valor) {
         this.devedor = valor;
     }
-
-
-
 
     public boolean podeEmprestar(Exemplar exemplar) {
         return this.verificador.podeEmprestar(this, exemplar);
@@ -117,10 +110,6 @@ public abstract class Usuario {
     public String getMotivoFalhaEmprestimo() {
         return this.verificador.getmotivoFalhaEmprestimo();
     }
-
-
-
-
 
     // Função abstrata que deve ser implementada por cada tipo de usuário:
     public abstract int obterDiasEmprestimo(); // Não sei se precisar ser protected, mas é uma função que deve ser implementada por cada tipo de usuário (Aluno, biblioteca.Professor, etc) para definir quantos dias o empréstimo pode durar.
