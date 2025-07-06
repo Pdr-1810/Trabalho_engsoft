@@ -24,13 +24,16 @@ public abstract class Usuario {
         devedor = false;
     }
 
+    public void removerReservaDeLivro(Livro livro){
+       for (Reserva reserva: reservas){
+            if (reserva.getLivro() == livro){
+                reservas.remove(reserva);
+                livro.removerReserva(reserva);
+            }
+       } 
+    }
 
-
-
-
-
-
-   public void verificaDevedor(){
+    public void verificaDevedor(){
         if(!emprestimosatuais.isEmpty()) {
             for (Emprestimo emprestimo : emprestimosatuais) {
                 if (emprestimo.getDataderetorno().isBefore(LocalDate.now())) {

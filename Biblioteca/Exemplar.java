@@ -37,8 +37,6 @@ public class Exemplar {
         this.codigoExemplar = codigoExemplar;
     }
 
-
-    
     public ArrayList<Reserva> obterReservasLivro() {
     return this.livro.getReservas(); // Retorna a lista de reservas do livro associado a este exemplar
     }
@@ -52,9 +50,6 @@ public class Exemplar {
     public String getTituloDoLivro() {
         return livro.getTitulo();
     }
-
-
-
 
     public boolean isDisponivel() {
         return this.emprestimoatual == null;
