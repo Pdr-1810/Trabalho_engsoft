@@ -82,8 +82,6 @@ public class Livro implements IObjetoObservado {
         this.reservas = reservas;
     }
 
-
-
     public void adicionarExemplar(Exemplar exemplar){
         exemplares.add(exemplar);
     }
@@ -100,6 +98,7 @@ public class Livro implements IObjetoObservado {
         }
         return null;
     }
+
     public int checarQuantidadeExemplaresDisponiveis(){
         int quantidade = 0;
         for (Exemplar exemplar: exemplares){
@@ -116,12 +115,20 @@ public class Livro implements IObjetoObservado {
             this.notificarObservadores(); //se bater 2 reservas notifica em + 1
         }
     }
+
     public void removerReserva(Reserva reserva){
         reservas.remove(reserva);
     }
 
-
-
+    public void removerReservaDeUsuario(Usuario usuario){
+       for (Reserva reserva: reservas){
+            if (reserva.getUsuario() == usuario){
+                reservas.remove(reserva);
+                return;
+            }
+       } 
+    }
+    
     @Override
     public void registrarObservador(IObservadorLivro observador){
         observadores.add(observador);

@@ -57,19 +57,10 @@ public class Emprestimo {
     public String getNomeDoUsuario() { // retorna o nome do usuário que fez o empréstimo
         return usuario.getNome();
     }
-
-
-    public boolean verificarDevolucao(Exemplar exemplar, Usuario usuario){
-        if (exemplar.equals(this.exemplar) && this.exemplar.getEmprestimoatual() != null) {
-            this.exemplar.setDisponivel(true); // Remove o empréstimo atual
-            this.exemplar.setEmprestimoatual(null);
-            this.setDataderetorno(LocalDate.now());
-            usuario.getEmprestimosatuais().remove(this);
-            usuario.getEmprestimospassados().add(this);
-            usuario.verificaDevedor(); //verifica se ao devolver o exemplar, ainda resta algum empréstimo pendente ou não
-            return true; // Devolução bem-sucedida
-        }
-        return false; // Devolução falhou, exemplar não corresponde ou não está emprestado
+    
+    public void devolver(){
+        this.setDataderetorno(LocalDate.now());
     }
+
     
 }

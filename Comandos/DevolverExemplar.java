@@ -15,13 +15,11 @@ public class DevolverExemplar implements Comando{
         for (Emprestimo emprestimo : emprestimosAtuais) {
             Exemplar exemplar = emprestimo.getExemplar();
             if (exemplar.getLivro().equals(livro)) {
-                if (emprestimo.verificarDevolucao(exemplar, usuario)) {
-                    System.out.println("Devolução realizada com sucesso!");
-                    return;
-                } else {
-                    System.out.println("O exemplar não está emprestado para este usuário.");
-                    return;
-                }
+                exemplar.devolver();
+                emprestimo.devolver();
+                usuario.devolver(emprestimo);
+                System.out.println("Devolução realizada com sucesso!");
+                return;
             }
         }
         System.out.println("Nenhum exemplar deste livro está emprestado para este usuário.");

@@ -46,6 +46,12 @@ public abstract class Usuario {
         this.setDevedor(false);
    }
 
+    public void devolver(Emprestimo emprestimo){
+        this.getEmprestimosatuais().remove(emprestimo);
+        this.getEmprestimospassados().add(emprestimo);
+        this.verificaDevedor(); //verifica se ao devolver o exemplar, ainda resta algum empréstimo pendente ou não
+    }
+
     public String getNome() {
         return nome;
     }

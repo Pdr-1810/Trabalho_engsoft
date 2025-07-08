@@ -59,6 +59,10 @@ public class Exemplar {
         this.disponivel = disponivel;
     }
 
+    public void devolver(){
+        this.setDisponivel(true); // Remove o empréstimo atual
+        this.setEmprestimoatual(null);
+    }
 
 
 

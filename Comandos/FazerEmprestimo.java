@@ -18,7 +18,7 @@ public class FazerEmprestimo implements Comando{
         if (exemplar != null) {
             if (usuario.podeEmprestar(exemplar)) {
                 realizarEmprestimo(exemplar,usuario);
-                usuario.removerReservaDeLivro(livro);
+                removerReservas(usuario,livro);
                 System.out.println("Empréstimo realizado com sucesso!");
             } else {
                 System.out.println(usuario.getMotivoFalhaEmprestimo());
@@ -35,5 +35,9 @@ public class FazerEmprestimo implements Comando{
         Livro livro = repositorio.buscarLivro(carregadorParametros.getParametroDois());
         alugarLivro(livro,usuario);
     }
-
+    
+    public void removerReservas(Usuario usuario, Livro livro){
+        livro.removerReservaDeUsuario(usuario);
+        usuario.removerReservaDeLivro(livro);
+    }
 }
