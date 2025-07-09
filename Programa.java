@@ -117,24 +117,28 @@ public class Programa {
         comandos.get("ntf").executar(new CarregadorParametros("100"));
         //Menu de seleção
         while (true){
-
             System.out.println("Insira um comando");
             String entrada = input.nextLine();
             String[] partes = entrada.trim().split("\\s+");
             ArrayList<String> parametros = new ArrayList<>(Arrays.asList(partes));
 
             Comando comando = comandos.get(parametros.get(0));
-            if (parametros.size() == 2){
-                CarregadorParametros carregador = new CarregadorParametros(parametros.get(1));
-                comando.executar(carregador);
-            }
-            else if(parametros.size() == 3){
-                CarregadorParametros carregador = new CarregadorParametros(parametros.get(1), parametros.get(2));
-                comando.executar(carregador);
+            if (parametros.get(0).equals("sai")){
+                break;
             }
             else{
-                System.out.println("Erro: Insira um comando de tamanho válido.");
-                break;
+
+                if (parametros.size() == 2){
+                    CarregadorParametros carregador = new CarregadorParametros(parametros.get(1));
+                    comando.executar(carregador); 
+                }
+                else if(parametros.size() == 3){
+                    CarregadorParametros carregador = new CarregadorParametros(parametros.get(1), parametros.get(2));
+                    comando.executar(carregador);
+                }
+                else{
+                    System.out.println("Erro: Insira um comando de tamanho válido.");
+                }
             }
 
         }
