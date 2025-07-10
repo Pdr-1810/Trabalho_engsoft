@@ -7,7 +7,7 @@ public class Emprestimo {
     private Exemplar exemplar;
     private LocalDate datadeemprestimo;
     private LocalDate dataderetorno;
-    private Status status;
+    private boolean status;
     //provavelmente o emprestimo vai ter a data que foi realizado o emprestimo e a data atual, que será checada rotineiramente para todos os usuários (padrão observer).
     //caso ultrapasse o limite de cada tipo de usuário ele ficará com os status de devedor
     //
@@ -17,7 +17,7 @@ public class Emprestimo {
         this.exemplar = exemplar;
         this.datadeemprestimo = Datadeemprestimo;
         this.dataderetorno = Dataderetorno;
-        this.status = Status.EM_CURSO;
+        this.status = true;
     }
 
 
@@ -45,8 +45,8 @@ public class Emprestimo {
     public void setDataderetorno(LocalDate dataderetorno) {
         this.dataderetorno = dataderetorno;
     }
-    public String getStatus(){
-        if (this.status == Status.EM_CURSO){
+    public String obterStatusPorExtenso(){
+        if (this.status == true){
             return "Em curso";
         }
         else{
@@ -67,7 +67,7 @@ public class Emprestimo {
     
     public void devolver(){
         this.setDataderetorno(LocalDate.now());
-        this.status = Status.FINALIZADO;
+        this.status = false;
     }
 
     
