@@ -65,13 +65,6 @@ public class Programa {
         livro6.adicionarExemplar(exemplar8);
         livro6.adicionarExemplar(exemplar9);
 
-        // Adicionar Comandos:
-        Comando consultarLivro = new ConsultarLivro();
-        Comando consultarUsuario = new ConsultarUsuario();
-
-
-
-
         Scanner input = new Scanner(System.in);
 
         Map<String, Comando> comandos = new HashMap<>();
@@ -83,38 +76,6 @@ public class Programa {
         comandos.put("usu", new ConsultarUsuario());
         comandos.put("ntf", new ConsultarNotificacoes());
 
-        // 1. Usuário faz dois empréstimos, tenta um terceiro (deve falhar para graduação)
-        CarregadorParametros p1 = new CarregadorParametros("123", "100");
-        comandos.get("emp").executar(p1); // Sucesso
-        CarregadorParametros p2 = new CarregadorParametros("123", "101");
-        comandos.get("emp").executar(p2); // Sucesso
-        CarregadorParametros p3 = new CarregadorParametros("123", "200");
-        comandos.get("emp").executar(p3); // Deve falhar (limite)
-
-// 2. Reserva e empréstimo com reservas pendentes
-        CarregadorParametros p4 = new CarregadorParametros("789", "100");
-        comandos.get("res").executar(p4); // Reserva feita
-        comandos.get("emp").executar(p4); // Deve cancelar reserva e emprestar
-
-// 3. Professor pega vários livros, mesmo com reservas
-        CarregadorParametros p5 = new CarregadorParametros("100", "300");
-        comandos.get("emp").executar(p5); // Sucesso
-        CarregadorParametros p6 = new CarregadorParametros("100", "301");
-        comandos.get("emp").executar(p6); // Sucesso
-
-// 4. Devolução e novo empréstimo
-        comandos.get("dev").executar(p1); // Devolve livro 100
-        comandos.get("emp").executar(p3); // Agora deve conseguir
-
-// 5. Notificações para observador
-        CarregadorParametros p7 = new CarregadorParametros("100", "101");
-        comandos.get("obs").executar(p7); // Professor observa livro 101
-        comandos.get("res").executar(new CarregadorParametros("123", "101"));
-        comandos.get("res").executar(new CarregadorParametros("456", "101"));
-        comandos.get("res").executar(new CarregadorParametros("789", "101")); // Deve notificar
-
-// 6. Consulta de notificações
-        comandos.get("ntf").executar(new CarregadorParametros("100"));
         //Menu de seleção
         while (true){
             System.out.println("Insira um comando");
