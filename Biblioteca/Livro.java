@@ -112,7 +112,7 @@ public class Livro implements IObjetoObservado {
     public void adicionarReserva(Reserva reserva){
         reservas.add(reserva);
         if (reservas.size() >= 2){
-            this.notificarObservadores(); //se bater 2 reservas notifica em + 1
+            this.notificarObservadores(); //se bater 2 reservas ou mais notifica em + 1
         }
     }
 
@@ -145,5 +145,4 @@ public class Livro implements IObjetoObservado {
             observador.atualizar();
         }
     }
-    //não sei se a logica de incremento e decremento de observadores está correta, mas pelo menos está funcional
 }

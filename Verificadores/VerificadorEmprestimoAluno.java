@@ -16,7 +16,7 @@ public class VerificadorEmprestimoAluno implements IVerificadorEmprestimo {
             motivoFalha = "Aluno devedor não pode pegar emprestado";
             return false;
         }
-        if(usuario.getEmprestimosatuais().size() < usuario.obterMaxEmprestimos()){  //verifica se o aluno de pos-graducaao ja não está no limite de livro emprestados
+        if(usuario.getEmprestimosatuais().size() < usuario.obterMaxEmprestimos()){  //verifica se o aluno de pos-graduação ja não está no limite de livro emprestados
 
             ArrayList<Reserva> reservas = exemplar.obterReservasLivro();  //pega a lista de reservas do livro
             ArrayList<Exemplar> exemplares = exemplar.obterExemplaresLivro();  //pega a lista de exemplares do livro
@@ -45,7 +45,7 @@ public class VerificadorEmprestimoAluno implements IVerificadorEmprestimo {
                 return false;   
             }
         }
-        else{      //se o aluno tiver mais do que 3, não é realizado o empréstimo
+        else{      
             motivoFalha = "Aluno já possui o máximo de empréstimos permitidos";
             return false;
         }
