@@ -9,7 +9,7 @@ public class Repositorio {
     private ArrayList<Usuario> usuarios;
     private ArrayList<Livro> livros;
 
-    public Repositorio() {
+    private Repositorio() {
         usuarios = new ArrayList<>();
         livros = new ArrayList<>();
     }

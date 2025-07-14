@@ -17,7 +17,7 @@ public class ConsultaUsuarioGenerico{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("Emprestimos passados: ");
         for(Emprestimo emp: usuario.getEmprestimospassados()){
-            String status = emp.obterStatusPorExtenso(); //Temos que definir o processo de devolução primeiro
+            String status = emp.obterStatusPorExtenso();
             String dataDevolucao = emp.getDataderetorno().format(formatter);
             System.out.println("Livro: " + emp.getTituloDoLivro() +
                     " | Data do empréstimo: " + emp.getDatadeemprestimo().format(formatter) +
@@ -27,7 +27,7 @@ public class ConsultaUsuarioGenerico{
 
         System.out.println("Emprestimos atuais: ");
         for(Emprestimo emp: usuario.getEmprestimosatuais()){
-            String status = emp.obterStatusPorExtenso(); //Temos que definir o processo de devolução primeiro
+            String status = emp.obterStatusPorExtenso();
             String dataDevolucao = emp.getDataderetorno().format(formatter);
             System.out.println("Livro: " + emp.getTituloDoLivro() +
                     " | Data do empréstimo: " + emp.getDatadeemprestimo().format(formatter) +
@@ -38,7 +38,7 @@ public class ConsultaUsuarioGenerico{
         System.out.println("Reservas: ");
         for(Reserva reserva:usuario.getReservas()){
             System.out.println("Livro: " + reserva.getTituloDoLivro() +
-                    " | Data da reserva: " + reserva.getDatadareserva().format(formatter));// Criar o processo de Reservar primeiro
+                    " | Data da reserva: " + reserva.getDatadareserva().format(formatter));
         }
 
     }

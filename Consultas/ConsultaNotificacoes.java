@@ -2,7 +2,7 @@ package Consultas;
 
 import Biblioteca.IObservadorLivro;
 
-public class ConsultaNotificacoes { //aqui a gente implementa o biblioteca.IConsulta
+public class ConsultaNotificacoes {
     public static void consulta(IObservadorLivro observadorLivro) {
         System.out.println("O número total de notificações recebidas pelo usuario é de: " + observadorLivro.obterNotificacoes());
     }
