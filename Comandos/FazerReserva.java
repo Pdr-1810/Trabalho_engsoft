@@ -10,9 +10,6 @@ public class FazerReserva implements Comando{
             usuario.adicionarReserva(reserva);
             System.out.println("Reserva efetuada com sucesso!");
         }
-        else{
-            System.out.println("O livro não foi encontado no sistema.");
-        }
     }
 
     public void executar(CarregadorParametros carregadorParametros){

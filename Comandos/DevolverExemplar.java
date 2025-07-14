@@ -8,7 +8,6 @@ public class DevolverExemplar implements Comando{
 
     public void fazerDevolucao(Livro livro, Usuario usuario) {
         if (livro == null) {
-            System.out.println("O livro não foi encontrado no sistema.");
             return;
         }
         ArrayList<Emprestimo> emprestimosAtuais = usuario.getEmprestimosatuais();
@@ -22,7 +21,6 @@ public class DevolverExemplar implements Comando{
                 return;
             }
         }
-        System.out.println("Nenhum exemplar deste livro está emprestado para este usuário.");
     }
 
 

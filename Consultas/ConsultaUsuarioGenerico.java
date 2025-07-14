@@ -3,7 +3,6 @@ package Consultas;
 import Biblioteca.Emprestimo;
 import Biblioteca.Reserva;
 import Biblioteca.Usuario;
-import Biblioteca.Livro;
 
 import java.time.format.DateTimeFormatter;
 
