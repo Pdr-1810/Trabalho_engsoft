@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class FazerEmprestimo implements Comando{
 
-    private void realizarEmprestimo(Exemplar exemplar, Usuario usuario) {
+    public void realizarEmprestimo(Exemplar exemplar, Usuario usuario) {
         int diasEmprestimo = usuario.obterDiasEmprestimo();
         Emprestimo emprestimo = new Emprestimo(usuario, exemplar, LocalDate.now(), LocalDate.now().plusDays(diasEmprestimo));
         exemplar.setEmprestimoatual(emprestimo);
