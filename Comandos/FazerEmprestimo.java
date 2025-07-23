@@ -13,7 +13,6 @@ public class FazerEmprestimo implements Comando{
     }
 
     public void alugarLivro(Livro livro,Usuario usuario) {
-        usuario.verificaDevedor();
         Exemplar exemplar = livro.checarExemplares();
         if (exemplar != null) {
             if (usuario.podeEmprestar(exemplar)) {
