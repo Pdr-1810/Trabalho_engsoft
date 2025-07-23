@@ -30,9 +30,4 @@ public class Professor extends Usuario implements IObservadorLivro {
     public int obterNotificacoes(){
         return notificacoes;
     }
-
-    @Override
-    public void registrarObservadorDeLivro(Livro livro){
-        livro.registrarObservador(this);
-    }
 }

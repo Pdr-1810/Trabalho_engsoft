@@ -6,5 +6,4 @@ public interface IObservadorLivro {
 
     public int obterNotificacoes();
 
-    public void registrarObservadorDeLivro(Livro livro);
 }
